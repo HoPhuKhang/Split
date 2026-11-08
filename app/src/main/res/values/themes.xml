@@ -1,14 +1,72 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Theme.Split" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Base.Theme.Split" parent="Theme.Material3.Light.NoActionBar">
         <item name="colorPrimary">@color/mint_strong</item>
         <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondaryContainer">@color/mint_soft</item>
         <item name="android:windowBackground">@color/paper</item>
+        <item name="materialButtonStyle">@style/Split.Button</item>
     </style>
 
-    <style name="Theme.Split.NoActionBar" parent="Theme.Split">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+    <style name="Theme.Split" parent="Base.Theme.Split" />
+
+    <style name="Split.Button" parent="Widget.Material3.Button">
+        <item name="android:minHeight">56dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="cornerRadius">16dp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Split.Button.Outline" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:minHeight">52dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="cornerRadius">16dp</item>
+        <item name="android:textColor">@color/ink</item>
+        <item name="strokeColor">@color/border_input</item>
+    </style>
+
+    <style name="Split.Button.Berry" parent="Split.Button">
+        <item name="backgroundTint">@color/berry_strong</item>
+    </style>
+
+    <style name="Split.Label">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/ink_muted</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Split.Body">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/ink</item>
+    </style>
+
+    <style name="Split.Amount">
+        <item name="android:textSize">36sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/ink</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="Split.Hint">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/mint_strong</item>
+        <item name="android:background">@drawable/bg_hint</item>
+        <item name="android:padding">12dp</item>
+    </style>
+
+    <style name="Split.Warn">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/amber_strong</item>
+        <item name="android:background">@drawable/bg_warn</item>
+        <item name="android:padding">12dp</item>
+    </style>
+
+    <style name="Split.Card">
+        <item name="android:background">@drawable/bg_card</item>
+        <item name="android:padding">16dp</item>
     </style>
 </resources>
