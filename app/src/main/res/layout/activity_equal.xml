@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Màn 3a: chia đều. Tổng tiền -> người trả (bắt buộc) -> bàn phím số -> nút kết quả. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/paper"
+    android:orientation="vertical"
+    android:paddingStart="16dp"
+    android:paddingTop="8dp"
+    android:paddingEnd="16dp"
+    android:paddingBottom="16dp">
+
+    <include layout="@layout/view_top_bar" />
+
+    <TextView
+        style="@style/Split.Label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="총 금액" />
+
+    <TextView
+        android:id="@+id/text_amount"
+        style="@style/Split.Amount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        tools:text="87,000원" />
+
+    <TextView
+        android:id="@+id/text_each"
+        style="@style/Split.Body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/ink_muted"
+        tools:text="3명 · 1인당 29,000원" />
+
+    <TextView
+        style="@style/Split.Label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="누가 결제했나요?" />
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chips_payer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp" />
+
+    <!-- 코드가 아직 선택 안 했거나 할 때 안내 -->
+    <TextView
+        android:id="@+id/text_need"
+        style="@style/Split.Warn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="⚠ 결제한 사람을 먼저 골라 주세요. 그래야 결과를 볼 수 있어요."
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <!-- 12 phím được tạo bằng code trong Numpad.build() -->
+    <GridLayout
+        android:id="@+id/numpad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="3" />
+
+    <Button
+        android:id="@+id/btn_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:enabled="false"
+        android:text="정산 결과 보기" />
+
+</LinearLayout>
