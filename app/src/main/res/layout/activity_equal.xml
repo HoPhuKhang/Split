@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Màn 3a: chia đều. Tổng tiền -> người trả (bắt buộc) -> bàn phím số -> nút kết quả. -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/root"
@@ -68,7 +67,6 @@
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-    <!-- 12 phím được tạo bằng code trong Numpad.build() -->
     <GridLayout
         android:id="@+id/numpad"
         android:layout_width="match_parent"
