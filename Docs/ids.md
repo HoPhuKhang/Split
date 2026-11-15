@@ -19,6 +19,7 @@ A(Java)와 B(XML)가 같은 이름을 쓰기 위한 목록.
 | 1 모임 만들기 | activity_main | btn_next | Button | 다음 |
 | 2 방식 선택 | activity_mode | card_equal / card_items / card_hoesik | LinearLayout | 정산 방식 3가지 |
 | 3a N분의 1 | activity_equal | text_amount | TextView | 총액 |
+| 3a N분의 1 | activity_equal | text_each | TextView | ○명 · 1인당 ○원 (2주차 추가) |
 | 3a N분의 1 | activity_equal | chips_payer | ChipGroup | 누가 결제했나요? |
 | 3a N분의 1 | activity_equal | text_need | TextView | 결제자 안내 (Split.Warn) |
 | 3a N분의 1 | activity_equal | numpad | GridLayout | 숫자 키패드 |
