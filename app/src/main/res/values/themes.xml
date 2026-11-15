@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Style gốc rỗng: các style Split.Label, Split.Card… kế thừa từ đây -->
+    <style name="Split" />
     <style name="Base.Theme.Split" parent="Theme.Material3.Light.NoActionBar">
         <item name="colorPrimary">@color/mint_strong</item>
         <item name="colorOnPrimary">@color/white</item>
