@@ -35,7 +35,7 @@ A(Java)와 B(XML)가 같은 이름을 쓰기 위한 목록.
 | 메뉴 한 줄 | item_menu_row | text_name / text_qty / text_price / btn_delete | 한 줄 | 메뉴 이름, x3, 금액, 삭제 |
 | 메뉴 추가 시트 | sheet_add_item | chips_quick / edit_item_name / text_price / btn_minus / text_qty / btn_plus / numpad / btn_add | 바텀시트 | 자주 찾는 메뉴, 이름, 가격, 수량, 키패드 |
 | 4 먹은 사람 지정 | activity_assign | chips_brush / text_hint / list_rounds / btn_result | | 사람 선택, 안내, 차수별 메뉴, 결과 보기 |
-| 메뉴 카드 | item_assign | text_name / text_price / list_who | 카드 | 메뉴 이름, 금액, 먹은 사람 아바타 |
-| 5 정산 결과 | activity_result | list_paid / list_transfers / list_people / btn_nudge | | 누가 결제했나요?, 누가 누구에게, 사람별 정리 |
+| 메뉴 카드 | item_assign | text_name / text_price / list_who / btn_all | 카드 | 메뉴 이름, 금액, 먹은 사람 아바타, 모두 (3주차: btn_all 추가) |
+| 5 정산 결과 | activity_result | text_summary / list_paid / list_transfers / list_people / btn_nudge | | 송금 횟수 요약, 누가 결제했나요?, 누가 누구에게, 사람별 정리 (3주차: text_summary 추가) |
 | 6 부드럽게 알리기 | activity_nudge | chips_target / group_tone / btn_send | | 받는 사람, 말투, 보내기 |
 | 7 보냈어요 | activity_sent | btn_new | Button | 새 모임 만들기 |
