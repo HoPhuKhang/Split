@@ -23,20 +23,26 @@ import java.util.List;
 /**
  * Màn 6: nhắc tiền nhẹ nhàng. Chọn người phải gửi → chọn giọng điệu (xem trước câu thật)
  * → "보내기" mở bảng chia sẻ của Android (KakaoTalk, tin nhắn…).
+ * Tuần 4: người đã được nhắc có dấu ✓, quay lại màn này thì tự chọn người kế tiếp.
  */
 public class NudgeActivity extends BaseActivity {
 
     private final List<Transfer> targets = new ArrayList<>();
     private int selected = 0;
+    private Transfer sending = null;   // người vừa mở bảng chia sẻ
     private Nudge.Tone tone = Nudge.Tone.FRIENDLY;
 
     private ChipGroup chipsTarget;
     private RadioGroup groupTone;
 
-    /** Đóng bảng chia sẻ xong (gửi hay hủy) thì sang màn "보냈어요". Phải khai báo trước onStart(). */
+    /** Đóng bảng chia sẻ xong thì ghi lại người đã nhắc và sang màn "보냈어요". Phải khai báo trước onStart(). */
     private final ActivityResultLauncher<Intent> shareLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
-            r -> startActivity(new Intent(this, SentActivity.class)));
+            r -> {
+                if (sending != null) store().markNudged(sending);
+                sending = null;
+                startActivity(new Intent(this, SentActivity.class));
+            });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +55,23 @@ public class NudgeActivity extends BaseActivity {
         chipsTarget = findViewById(R.id.chips_target);
         groupTone = findViewById(R.id.group_tone);
         findViewById(R.id.btn_send).setOnClickListener(v -> send());
+    }
+
+    /** Chạy cả lúc mở màn lần đầu và lúc quay lại từ màn "보냈어요". */
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (targets.isEmpty()) return;
+        selected = firstNotNudged();
         render();
+    }
+
+    /** Người đầu tiên chưa được nhắc; ai cũng nhắc rồi thì giữ người đang chọn. */
+    private int firstNotNudged() {
+        for (int i = 0; i < targets.size(); i++) {
+            if (!store().isNudged(targets.get(i))) return i;
+        }
+        return Math.min(selected, targets.size() - 1);
     }
 
     private void render() {
@@ -57,7 +79,7 @@ public class NudgeActivity extends BaseActivity {
         renderTones();
     }
 
-    /** "서연 · 16,000원" — mỗi người phải gửi là một chip. */
+    /** "서연 · 16,000원" — mỗi người phải gửi là một chip. Đã nhắc rồi: "✓ 서연 · 16,000원". */
     private void renderTargets() {
         chipsTarget.removeAllViews();
         for (int i = 0; i < targets.size(); i++) {
@@ -65,7 +87,9 @@ public class NudgeActivity extends BaseActivity {
             Transfer t = targets.get(i);
             Person from = store().person(t.fromId);
             if (from == null) continue;
-            Chip chip = Ui.choiceChip(this, from.name + " · " + Money.won(t.amount), i == selected);
+            String label = from.name + " · " + Money.won(t.amount);
+            if (store().isNudged(t)) label = "✓ " + label;
+            Chip chip = Ui.choiceChip(this, label, i == selected);
             chip.setOnClickListener(v -> {
                 selected = index;
                 render();
@@ -113,6 +137,7 @@ public class NudgeActivity extends BaseActivity {
         if (from == null || to == null) return;
 
         String text = Nudge.message(tone, from.name, t.amount, to.name, store().mealName);
+        sending = t;
         Intent send = new Intent(Intent.ACTION_SEND);
         send.setType("text/plain");
         send.putExtra(Intent.EXTRA_TEXT, text);
