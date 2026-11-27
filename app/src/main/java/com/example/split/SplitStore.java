@@ -4,9 +4,12 @@ import com.example.split.logic.Settlement;
 import com.example.split.model.MenuItem;
 import com.example.split.model.Person;
 import com.example.split.model.Round;
+import com.example.split.model.Transfer;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Stores shared data used by all screens (singleton).
@@ -50,6 +53,9 @@ public final class SplitStore {
     // Calculated result; the result screen only reads this value
     public Settlement.Result result = null;
 
+    // Transfers that already got a reminder (week 4). Key = "fromId>toId".
+    public final Set<String> nudged = new LinkedHashSet<>();
+
     private int nextPerson = 1;
     private int nextItem = 1;
 
@@ -66,6 +72,7 @@ public final class SplitStore {
         equalTotal = 0;
         equalPayerId = null;
         result = null;
+        nudged.clear();
         nextPerson = 1;
         nextItem = 1;
         addPerson("지훈");
@@ -171,6 +178,31 @@ public final class SplitStore {
         } else {
             result = Settlement.items(peopleIds(), rounds, mode == Mode.HOESIK);
         }
+        nudged.clear();   // A new result means nobody has been reminded yet
         return result;
+    }
+
+    // ----- Reminders (week 4) -----
+
+    public static String nudgeKey(Transfer t) {
+        return t.fromId + ">" + t.toId;
+    }
+
+    public boolean isNudged(Transfer t) {
+        return nudged.contains(nudgeKey(t));
+    }
+
+    public void markNudged(Transfer t) {
+        nudged.add(nudgeKey(t));
+    }
+
+    /** How many transfers still have no reminder. */
+    public int remainingNudges() {
+        if (result == null) return 0;
+        int n = 0;
+        for (Transfer t : result.transfers) {
+            if (!isNudged(t)) n++;
+        }
+        return n;
     }
 }
