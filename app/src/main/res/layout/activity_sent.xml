@@ -1,10 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SentActivity">
+    android:background="@color/paper"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingStart="24dp"
+    android:paddingTop="16dp"
+    android:paddingEnd="24dp"
+    android:paddingBottom="16dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <TextView
+        android:layout_width="88dp"
+        android:layout_height="88dp"
+        android:background="@drawable/bg_hint"
+        android:gravity="center"
+        android:importantForAccessibility="no"
+        android:text="✓"
+        android:textColor="@color/mint_strong"
+        android:textSize="44sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="보냈어요"
+        android:textColor="@color/ink"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        style="@style/Split.Body"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="알림은 내 이름이 아니라 Split 이름으로 갔어요.\n즐거운 모임은 그대로!"
+        android:textColor="@color/ink_muted" />
+
+    <TextView
+        android:id="@+id/text_remaining"
+        style="@style/Split.Hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        tools:text="아직 1명에게 보내지 않았어요." />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <Button
+        android:id="@+id/btn_next_person"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="다음 사람에게 보내기" />
+
+    <Button
+        android:id="@+id/btn_new"
+        style="@style/Split.Button.Outline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="새 모임 만들기" />
+</LinearLayout>

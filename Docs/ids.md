@@ -38,4 +38,4 @@ A(Java)와 B(XML)가 같은 이름을 쓰기 위한 목록.
 | 메뉴 카드 | item_assign | text_name / text_price / list_who / btn_all | 카드 | 메뉴 이름, 금액, 먹은 사람 아바타, 모두 (3주차: btn_all 추가) |
 | 5 정산 결과 | activity_result | text_summary / list_paid / list_transfers / list_people / btn_nudge | | 송금 횟수 요약, 누가 결제했나요?, 누가 누구에게, 사람별 정리 (3주차: text_summary 추가) |
 | 6 부드럽게 알리기 | activity_nudge | chips_target / group_tone / btn_send | | 받는 사람, 말투, 보내기 |
-| 7 보냈어요 | activity_sent | btn_new | Button | 새 모임 만들기 |
+| 7 보냈어요 | activity_sent | text_remaining / btn_next_person / btn_new | | 남은 사람 수, 다음 사람에게 보내기, 새 모임 만들기 (4주차: text_remaining, btn_next_person 추가) |
